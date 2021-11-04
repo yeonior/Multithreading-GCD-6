@@ -16,22 +16,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="G2F-nb-GAI">
-                                <rect key="frame" x="60" y="313" width="294" height="270"/>
+                            <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="G2F-nb-GAI">
+                                <rect key="frame" x="60" y="237" width="294" height="422"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Received objects: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4mb-49-fsA">
-                                        <rect key="frame" x="0.0" y="0.0" width="294" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="294" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Number of objects to send" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VZO-QR-hO7">
-                                        <rect key="frame" x="0.0" y="110" width="294" height="50"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                    </textField>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NuJ-eg-eUk">
+                                        <rect key="frame" x="0.0" y="96" width="294" height="216"/>
+                                    </pickerView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="iwr-5D-v5r">
-                                        <rect key="frame" x="0.0" y="220" width="294" height="50"/>
+                                        <rect key="frame" x="0.0" y="372" width="294" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yT9-HC-V21">
                                                 <rect key="frame" x="0.0" y="0.0" width="142" height="50"/>
@@ -65,9 +63,7 @@
                                     <constraint firstItem="4mb-49-fsA" firstAttribute="leading" secondItem="G2F-nb-GAI" secondAttribute="leading" id="4CM-yn-G04"/>
                                     <constraint firstAttribute="bottom" secondItem="iwr-5D-v5r" secondAttribute="bottom" id="6we-67-p9K"/>
                                     <constraint firstAttribute="trailing" secondItem="iwr-5D-v5r" secondAttribute="trailing" id="G0f-4D-7Z6"/>
-                                    <constraint firstAttribute="trailing" secondItem="VZO-QR-hO7" secondAttribute="trailing" id="H9I-jf-5hp"/>
                                     <constraint firstAttribute="trailing" secondItem="4mb-49-fsA" secondAttribute="trailing" id="HoY-Ot-ZtC"/>
-                                    <constraint firstItem="VZO-QR-hO7" firstAttribute="leading" secondItem="G2F-nb-GAI" secondAttribute="leading" id="PND-CU-jXx"/>
                                     <constraint firstItem="4mb-49-fsA" firstAttribute="top" secondItem="G2F-nb-GAI" secondAttribute="top" id="kNa-X8-h4V"/>
                                     <constraint firstItem="iwr-5D-v5r" firstAttribute="leading" secondItem="G2F-nb-GAI" secondAttribute="leading" id="xmV-nU-X5q"/>
                                 </constraints>
@@ -85,7 +81,7 @@
                     <connections>
                         <outlet property="barrierButton" destination="iKe-KG-AhQ" id="zwv-eo-nSf"/>
                         <outlet property="noBarrierButton" destination="yT9-HC-V21" id="Uvi-K4-bV6"/>
-                        <outlet property="objectsTextField" destination="VZO-QR-hO7" id="Lj8-qI-nQB"/>
+                        <outlet property="objectsPickerView" destination="NuJ-eg-eUk" id="VBq-oG-9YI"/>
                         <outlet property="receivedObjectsLabel" destination="4mb-49-fsA" id="SwX-eW-dns"/>
                     </connections>
                 </viewController>
