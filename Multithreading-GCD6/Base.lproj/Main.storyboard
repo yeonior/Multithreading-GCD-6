@@ -1,24 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ynz-T2-ISo">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--DispatchBarriers-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Multithreading_GCD6" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="G2F-nb-GAI">
+                                <rect key="frame" x="60" y="313" width="294" height="270"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Received objects: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4mb-49-fsA">
+                                        <rect key="frame" x="0.0" y="0.0" width="294" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Number of objects to send" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VZO-QR-hO7">
+                                        <rect key="frame" x="0.0" y="110" width="294" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="iwr-5D-v5r">
+                                        <rect key="frame" x="0.0" y="220" width="294" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yT9-HC-V21">
+                                                <rect key="frame" x="0.0" y="0.0" width="142" height="50"/>
+                                                <color key="backgroundColor" red="1" green="0.90327303215185784" blue="0.8772781633178337" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <state key="normal" title="No barrier">
+                                                    <color key="titleColor" systemColor="labelColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="noBarrierButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AcO-fB-5H8"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iKe-KG-AhQ">
+                                                <rect key="frame" x="152" y="0.0" width="142" height="50"/>
+                                                <color key="backgroundColor" red="0.83309254775574515" green="0.89642630197118156" blue="1" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <state key="normal" title="Barrier">
+                                                    <color key="titleColor" systemColor="labelColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="barrierButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IZp-mb-XyA"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Ff6-kp-bMC"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="4mb-49-fsA" firstAttribute="leading" secondItem="G2F-nb-GAI" secondAttribute="leading" id="4CM-yn-G04"/>
+                                    <constraint firstAttribute="bottom" secondItem="iwr-5D-v5r" secondAttribute="bottom" id="6we-67-p9K"/>
+                                    <constraint firstAttribute="trailing" secondItem="iwr-5D-v5r" secondAttribute="trailing" id="G0f-4D-7Z6"/>
+                                    <constraint firstAttribute="trailing" secondItem="VZO-QR-hO7" secondAttribute="trailing" id="H9I-jf-5hp"/>
+                                    <constraint firstAttribute="trailing" secondItem="4mb-49-fsA" secondAttribute="trailing" id="HoY-Ot-ZtC"/>
+                                    <constraint firstItem="VZO-QR-hO7" firstAttribute="leading" secondItem="G2F-nb-GAI" secondAttribute="leading" id="PND-CU-jXx"/>
+                                    <constraint firstItem="4mb-49-fsA" firstAttribute="top" secondItem="G2F-nb-GAI" secondAttribute="top" id="kNa-X8-h4V"/>
+                                    <constraint firstItem="iwr-5D-v5r" firstAttribute="leading" secondItem="G2F-nb-GAI" secondAttribute="leading" id="xmV-nU-X5q"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="G2F-nb-GAI" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Xi1-zy-PqY"/>
+                            <constraint firstItem="G2F-nb-GAI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="60" id="fqn-8D-G1T"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="G2F-nb-GAI" secondAttribute="trailing" constant="60" id="zXj-IU-DuP"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="DispatchBarriers" id="4Uc-eL-F6l"/>
+                    <connections>
+                        <outlet property="barrierButton" destination="iKe-KG-AhQ" id="zwv-eo-nSf"/>
+                        <outlet property="noBarrierButton" destination="yT9-HC-V21" id="Uvi-K4-bV6"/>
+                        <outlet property="objectsTextField" destination="VZO-QR-hO7" id="Lj8-qI-nQB"/>
+                        <outlet property="receivedObjectsLabel" destination="4mb-49-fsA" id="SwX-eW-dns"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1042.0289855072465" y="115.84821428571428"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="VfG-IZ-4jX">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ynz-T2-ISo" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Snm-E2-Mzk">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="8TL-wU-wmM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5ht-tW-laV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="115.84821428571428"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

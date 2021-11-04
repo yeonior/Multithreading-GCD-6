@@ -7,13 +7,28 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+// practicing with dispatch barriers
 
+final class ViewController: UIViewController {
+    
+    @IBOutlet weak var receivedObjectsLabel: UILabel!
+    @IBOutlet weak var objectsTextField: UITextField!
+    @IBOutlet weak var noBarrierButton: UIButton!
+    @IBOutlet weak var barrierButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        noBarrierButton.layer.cornerRadius = 15
+        barrierButton.layer.cornerRadius = 15
     }
-
-
+    
+    @IBAction func noBarrierButtonAction(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func barrierButtonAction(_ sender: UIButton) {
+        
+    }
 }
 
