@@ -46,8 +46,28 @@ final class ViewController: UIViewController {
         sendWithNoBarrier(objectsNumber: number)
     }
     
+    // safe writing with barrier
+    private func sendWithBarrier(objectsNumber: Int) {
+        DispatchQueue.concurrentPerform(iterations: objectsNumber) { index in
+            queue.async(flags: .barrier) { [unowned self] in
+                self.array.append(index)
+            }
+        }
+    }
+    
+    // safe reading
+    private func getObjects() -> String {
+        var result = "Received objects: N/A"
+        queue.sync {
+            result = "Received objects: \(self.array.count)"
+        }
+        return result
+    }
+    
     @IBAction func barrierButtonAction(_ sender: UIButton) {
-        
+        array.removeAll()
+        sendWithBarrier(objectsNumber: number)
+        receivedObjectsLabel.text = getObjects()
     }
 }
 
@@ -58,7 +78,7 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        30
+        20
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
