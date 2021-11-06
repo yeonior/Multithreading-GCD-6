@@ -18,11 +18,7 @@ final class ViewController: UIViewController {
     
     private let queue = DispatchQueue(label: "X", attributes: .concurrent)
     private var array = [Int]()
-    private var number = 1 {
-        didSet {
-            print(number)
-        }
-    }
+    private var number = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,14 +30,20 @@ final class ViewController: UIViewController {
         barrierButton.layer.cornerRadius = 15
     }
     
+    // race condition example
     private func sendWithNoBarrier(objectsNumber: Int) {
-        for i in 0...objectsNumber {
-            array.append(i)
+        DispatchQueue.concurrentPerform(iterations: objectsNumber) { index in
+            array.append(index)
+            DispatchQueue.main.async {
+                self.receivedObjectsLabel.text = "Received objects: \(self.array.count)"
+                print(self.array)
+            }
         }
     }
     
     @IBAction func noBarrierButtonAction(_ sender: UIButton) {
-        
+        array.removeAll()
+        sendWithNoBarrier(objectsNumber: number)
     }
     
     @IBAction func barrierButtonAction(_ sender: UIButton) {
@@ -56,7 +58,7 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        10
+        30
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
